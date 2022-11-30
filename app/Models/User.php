@@ -24,9 +24,9 @@ class User extends Authenticatable
         'revenue_id',
     ];
 
-    public function revenues()
+    public function revenue()
     {
-        return $this->hasMany(Revenues::class, 'revenue_id');
+        return $this->hasMany(Revenue::class);
     }
 
     /**

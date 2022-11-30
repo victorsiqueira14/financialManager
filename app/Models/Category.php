@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Expense;
-
 use App\Models\Revenue;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
