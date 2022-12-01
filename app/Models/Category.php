@@ -15,6 +15,8 @@ class Category extends Model
         'description',
     ];
 
+    protected $table = 'categories';
+
     public function revenue()
     {
         return $this->hasMany(Revenue::class);
