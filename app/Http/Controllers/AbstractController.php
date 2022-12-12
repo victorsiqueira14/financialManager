@@ -14,7 +14,8 @@ class AbstractController extends Controller
 
     public function show($id)
     {
-        return $this->service->find($id);
+        $response = $this->service->find($id);
+        return response()->json($response);
     }
 
     public function store(Request $request)
@@ -26,12 +27,12 @@ class AbstractController extends Controller
     public function update($id, Request $request)
     {
         $request = $this->service->update($id, $request->all());
-        return response()->json($request);
+        return response()->json(['mensage' => 'successfully changed']);
     }
 
     public function destroy($id)
     {
         $this->service->delete($id);
-        return response()->json(['success' => true]);
+        return response()->json(['mensage' => 'successfully deleted']);
     }
 }

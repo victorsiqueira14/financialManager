@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
+use App\Models\User;
 use App\Models\Category;
 use App\FinancialManager\Categories\Entities\CategoryEntity;
 use App\FinancialManager\Categories\Repositories\CategoryRepository;
@@ -16,7 +17,7 @@ class AbstractRepositoryTest extends TestCase
         parent::setUp();
 
         $this->repository = new CategoryRepository(new CategoryEntity);
-
+        $this->user = User::factory()->create();
         $this->category = Category::factory()->make();
         $this->data = $this->category->toArray();
     }
