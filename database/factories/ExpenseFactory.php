@@ -20,12 +20,14 @@ class ExpenseFactory extends Factory
     {
         $userIds = User::all()->pluck('id');
         $categoryIds = Category::all()->pluck('id');
+        $date = fake()->dateTimeBetween('now')->format('Y-m-d');
 
         return [
             'user_id' => fake()->randomElement($userIds),
             'category_id' => fake()->randomElement($categoryIds),
-            'expense_description' => fake()->paragraph(),
-            'expense' => fake()->randomFloat(2, 0, 10000),
+            'date' => $date,
+            'value' => fake()->randomFloat(2, 1, 1000),
+            'expense_description' => fake()->sentence,
         ];
     }
 }

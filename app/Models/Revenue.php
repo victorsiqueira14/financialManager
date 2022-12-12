@@ -11,25 +11,19 @@ class Revenue extends Model
 {
     use HasFactory;
 
+    protected $table = 'revenues';
     protected $fillable = [
         'user_id',
         'category_id',
+        'date',
         'revenue_description',
-        'revenue',
-
+        'value'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
-
-
 
 }
 

@@ -18,7 +18,8 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->foreignId('category_id');
             $table->string('expense_description');
-            $table->float('expense');
+            $table->date('date');
+            $table->decimal('value');
             $table->timestamps();
         });
     }

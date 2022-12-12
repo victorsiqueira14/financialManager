@@ -10,20 +10,25 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Category extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
-        'description',
-    ];
-
+    
     protected $table = 'categories';
+    protected $fillable = [
+        'user_id',
+        'description'
+    ];
 
     public function revenue()
     {
-        return $this->hasMany(Revenue::class);
+        return $this->hasMany(Revenue::class, 'category_id', 'id');
     }
 
     public function expense()
     {
-        return $this->expense(Expense::class);
+        return $this->hasMany(Expense::class, 'category_id', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
