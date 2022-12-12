@@ -21,13 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'revenue_id',
     ];
-
-    public function revenue()
-    {
-        return $this->hasMany(Revenue::class);
-    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -47,4 +41,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function revenue()
+    {
+        return $this->hasMany(Revenue::class);
+    }
+
+    public function expense()
+    {
+        return $this->hasMany(Expense::class, 'category_id');
+    }
+
+    public function category()
+    {
+        return $this->hasMany(Category::class, 'category_id');
+    }
 }

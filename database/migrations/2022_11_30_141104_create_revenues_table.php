@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('category_id');
+            $table->date('date');
             $table->string('revenue_description');
-            $table->float('revenue');
+            $table->decimal('value');
             $table->timestamps();
         });
     }
