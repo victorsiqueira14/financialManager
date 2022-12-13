@@ -31,7 +31,7 @@ class RevenueStoreRequest extends FormRequest
             'category_id' => 'required|integer',
             'date' => 'required|date|date_format:Y-m-d|after_or_equal:today|
                 before_or_equal:'.$endOfMonth,
-            'description' => 'required|string|max:191',
+            'revenue_description' => 'required|string|max:191',
             'value' => 'required|numeric|min:0'
         ];
 
