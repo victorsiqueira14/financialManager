@@ -46,9 +46,9 @@ abstract class AbstractService implements ServiceInterface
      * @param array $data
      * @return void
      */
-    public function update($id, array $data)
+    public function update(array $data, int $id)
     {
-        return $this->getRepository()->update($id, $data);
+        return $this->repository->update($data, $id);
     }
 
     /**

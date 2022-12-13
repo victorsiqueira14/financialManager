@@ -35,46 +35,45 @@ class CategoryCrudTest extends TestCase
 
     public function test_store_category()
     {
+
         $this->actingAs($this->user);
 
         $this->post('/api/category', $this->category->toArray())->assertStatus(200);
         $this->assertDatabaseHas('categories', $this->category->toArray());
     }
 
-    // public function test_show_category()
-    // {
-    //     $this->actingAs($this->user);
+    public function test_show_category()
+    {
+       $category = Category::factory()->create();
 
-    //     $response = $this->post('/api/category', $this->category->toArray());
-    //     $id = json_decode($response->content());
-    //     $expected = $this->category->description;
+        $this->get("/category/{$category->id}")
+            ->assertSee($category->id);
+    }
 
-    //     $this->get('/api/category/'.$expected)->assertSee($expected);
-    // }
+    public function test_update_category()
+    {
+        $this->actingAs($this->user);
 
-    // public function test_update_category()
-    // {
-    //     $this->actingAs($this->user);
+        $response = $this->post('/api/category', $this->category->toArray());
 
-    //     $response = $this->post('/api/category', $this->category->toArray());
-    //     $id = json_decode($response->content(), true);
+        $id = json_decode($response->content(), true)['id'];
 
-    //     $expected = ['description' => 'category updated'];
+        $expected = ['description' => 'category updated'];
+       
+        $this->put('/api/category/'.$id, $expected)->assertStatus(200);
+        $this->get('/api/category/' . $id)->assertSee($expected);
+    }
 
-    //     $this->put('/api/category/' . $id, $expected)->assertStatus(200);
-    //     $this->get('/api/category/' . $id)->assertSee($expected);
-    // }
+    public function test_delete_category()
+    {
+        $this->actingAs($this->user);
 
-    // public function test_delete_category()
-    // {
-    //     $this->actingAs($this->user);
+        $response = $this->post('/api/category', $this->category->toArray());
+        $id = json_decode($response->content(), true)['id'];
 
-    //     $response = $this->post('/api/category', $this->category->toArray());
-    //     $id = json_decode($response->content(), true)['id'];
-
-    //     $this->delete('/api/category/' . $id)->assertStatus(200);
-    //     $this->assertDatabaseCount('categories', 0);
-    // }
+        $this->delete('/api/category/' . $id)->assertStatus(200);
+        $this->assertDatabaseCount('categories', 0);
+    }
 
 
 }

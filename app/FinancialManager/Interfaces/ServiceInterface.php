@@ -10,7 +10,7 @@ interface ServiceInterface
 
     public function save(array $params);
 
-    public function update($id, array $data);
+    public function update(array $data, int $id);
 
     public function delete(int $id);
 
